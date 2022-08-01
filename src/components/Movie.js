@@ -1,7 +1,6 @@
 import Grid from '@mui/material/Grid'
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Movies from './Movies';
 
 const Movie = ({movie}) => {
   const navigate = useNavigate();

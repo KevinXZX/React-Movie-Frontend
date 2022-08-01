@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react'
+import { useState} from 'react'
 import { Autocomplete } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -7,15 +7,10 @@ import Toolbar from '@mui/material/Toolbar';
 import TextField from '@mui/material/TextField';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
 import { useNavigate } from "react-router-dom";
 import { InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import ThemeProvider from '@mui/material/styles/ThemeProvider';
-import { createMuiTheme } from '@mui/material/styles';
-import { color, height } from '@mui/system';
 
-const muiTheme = createMuiTheme({});
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -50,10 +45,6 @@ const StyledAutocomplete = styled(Autocomplete)({
   }
 });
 
-  //doesnt work right now auto complete is 
-  const CssTextField = styled(TextField)({
-    color:'white'
-  });
 const Header = () => {
     
     const [searchResult, setResult] = useState([]) 

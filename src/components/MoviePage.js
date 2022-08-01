@@ -1,56 +1,54 @@
-import Grid from '@mui/material/Grid'
 import React from "react";
 import Stack from '@mui/material/Stack';
 import { useState, useEffect } from 'react'
 import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-import { useParams, Switch, Route, withRouter,Router } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import { useLocation } from 'react-router';
-import { useNavigate } from 'react-router-dom'
-const MoviePage = (ida) => {
-  const history = useNavigate() 
+const MoviePage = () => {
   let pathname = useLocation()
   const {id} = useParams()
   const [movieDetails, setDetails] = useState([])
-  const [collectionLoaded,setCollectionLoaded] = useState(false)
-  const [collection,setCollection] = useState([])
-    useEffect(() => {
-        fetchDetails();
-        // const interval = setInterval(() => {
-        //   fetchDetails();
-        // }, 2000);
-      
-        // return () => clearInterval(interval);
-      },[pathname])
-
-    
-    const fetchDetails = async () => {
-        fetch('https://api.themoviedb.org/3/movie/'+id+'?api_key=0cec67fe43f9191296e8cb82c2303e20&language=en-US')
-        .then(response => {
-        return response.json()
-        })
-        .then(data => {
-            setDetails(data)
-            // if(data.belongs_to_collection!=null || data.belongs_to_collection!==undefined){
-            //   fetchCollection()
-            // }else{
-            //   setCollectionLoaded(true)
-            // }
-        })
-    }
-    const fetchCollection = async () => {
-      fetch('https://api.themoviedb.org/3/collection/'+movieDetails.belongs_to_collection+'?api_key=0cec67fe43f9191296e8cb82c2303e20')
+  // const [collectionLoaded,setCollectionLoaded] = useState(false)
+  // const [collection,setCollection] = useState([])
+  const fetchDetails = async () => {
+      fetch('https://api.themoviedb.org/3/movie/'+id+'?api_key=0cec67fe43f9191296e8cb82c2303e20&language=en-US')
       .then(response => {
-        alert(JSON.stringify(movieDetails))
-        //alert('https://api.themoviedb.org/3/collection/'+movieDetails.belongs_to_collection+'?api_key=0cec67fe43f9191296e8cb82c2303e20')
       return response.json()
       })
       .then(data => {
-        //alert("data" + JSON.stringify(data))
-        setCollection(data)
-        setCollectionLoaded(true)
+          setDetails(data)
+          // if(data.belongs_to_collection!=null || data.belongs_to_collection!==undefined){
+          //   fetchCollection()
+          // }else{
+          //   setCollectionLoaded(true)
+          // }
       })
   }
+  useEffect(() => {
+      fetchDetails();
+      // const interval = setInterval(() => {
+      //   fetchDetails();
+      // }, 2000);
+    
+      // return () => clearInterval(interval);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[pathname])
+
+    
+    
+  //   const fetchCollection = async () => {
+  //     fetch('https://api.themoviedb.org/3/collection/'+movieDetails.belongs_to_collection+'?api_key=0cec67fe43f9191296e8cb82c2303e20')
+  //     .then(response => {
+  //       alert(JSON.stringify(movieDetails))
+  //       //alert('https://api.themoviedb.org/3/collection/'+movieDetails.belongs_to_collection+'?api_key=0cec67fe43f9191296e8cb82c2303e20')
+  //     return response.json()
+  //     })
+  //     .then(data => {
+  //       //alert("data" + JSON.stringify(data))
+  //       setCollection(data)
+  //       setCollectionLoaded(true)
+  //     })
+  // }
     if(typeof movieDetails.revenue === 'undefined'){
       return <>Loading</>
     }else{
