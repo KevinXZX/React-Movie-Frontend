@@ -12,20 +12,27 @@ import { InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
+    display: 'flex',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     '&:hover': {
+      color:'white',
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
     marginLeft: 0,
     width: '100%',
+    height:'90%',
+    color:'white',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
       width: 'auto',
     },
 }));
-
+const StyledTextField = styled(TextField)({
+  "& label, & label.Mui-focused": {
+    color: "white"
+  },
+});
 const StyledAutocomplete = styled(Autocomplete)({
   color:'white',
   width:'300',
@@ -37,7 +44,9 @@ const StyledAutocomplete = styled(Autocomplete)({
     color:"white",
     backgroundColor:"white"
   },
-  ".MuiAutocomplete-groupLabel":{
+  ".MuiAutocomplete-paper":{
+    border:'1px solid red',
+
     color:"white"
   },
   ".css-q0fu5":{
@@ -71,7 +80,7 @@ const Header = () => {
       navigate("/movies/"+id)
     }
     return (
-        <AppBar position="relative"  style={{display: 'flex',background: 'black',width:'100%', height:'6vh', overflow:'visible'}}>
+        <AppBar position="relative"  style={{display: 'flex',background: 'black',width:'100%', height:'6vh'}}>
         <Toolbar variant="dense" color="black">
           <Typography variant="h6" sx="" color="inherit" component="div" onClick={()=>moveHome()}>
             FlixTracker
@@ -101,7 +110,7 @@ const Header = () => {
                   renderOption={(props, option) => <li {...props} onClick={()=>moveToMovie(option.id)}>{option.title}</li>}
                   // renderInput={(params) => <TextField style={{color:'white'}}{...params} label="Search Movies" />}
                   blurOnSelect={true}
-                  renderInput={(params) => <TextField {...params} InputProps={{
+                  renderInput={(params) => <StyledTextField {...params} InputProps={{
                     ...params.InputProps,
                     startAdornment: ( <InputAdornment position="start"> <SearchIcon /> 
                     </InputAdornment> ), //this breaks options somehow
