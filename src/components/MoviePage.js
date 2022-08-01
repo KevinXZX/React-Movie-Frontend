@@ -99,13 +99,6 @@ const MoviePage = () => {
           <div className='info'>
           {movieDetails.overview}
           </div>
-          <h4 style={{marginBottom:'3px'}}>
-          Synposis
-          </h4>
-          <hr></hr>
-          <div className='info'>
-          {movieDetails.overview}
-          </div>
         </Stack>
 
       </Container>
