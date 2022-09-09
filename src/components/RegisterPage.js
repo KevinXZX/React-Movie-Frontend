@@ -2,51 +2,69 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import { styled, alpha } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import { useState, useEffect} from 'react'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import WarningModal from "./WarningModal";
 
-const CssTextField = styled(TextField, {
-    shouldForwardProp: (props) => props !== "focusColor"
-  })((p) => ({
-    // input label when focused
-    "& label.Mui-focused": {
-      color: p.focusColor
-    },
-    // focused color for input with variant='standard'
-    "& .MuiInput-underline:after": {
-      borderBottomColor: p.focusColor
-    },
-    // focused color for input with variant='filled'
-    "& .MuiFilledInput-underline:after": {
-      borderBottomColor: p.focusColor
-    },
-    // focused color for input with variant='outlined'
-    "& .MuiOutlinedInput-root": {
-      "&.Mui-focused fieldset": {
-        borderColor: p.focusColor
-      }
-    }
-}));
 const RegisterPage = () => {
     const navigate = useNavigate();
+    const [loginDetails, setLogin] = useState([])
+    const [data,setData] = useState(null)
+    const [userCurrent,setUser] = useState([])
+    // const [access_token,setAccess] = useState([])
     const moveToLoginPage = () =>{
         navigate("/login")
     }
-    const handleSubmit = (event) => {
+    const registerUser = async (user) => {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+      };
+      fetch('https://flickerx.herokuapp.com/api/v1/user/register',requestOptions)
+      .then(response => {
+        var reply = response.json()
+        return reply
+      })
+      .then(data => {
+        setData(data);
+        return data;
+    })
+  }
+  useEffect(() => {
+    if(data!==null){
+      var reply = data
+      alert(JSON.stringify(reply))
+      if(reply.response === "User created"){
+        document.cookie = "username="+userCurrent.name
+        document.cookie = "id="+reply.user_id
+        document.cookie = "email="+userCurrent.email
+        document.cookie = "access_token="+reply.access_token
+        setLogin(true)
+        setData(null)
+        navigate("/")
+      }else{  
+        alert("Error: "+reply.response)
+        setData(null)
+      }
+    }
+  }, [data]);
+  
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-        });
+        var user = {};
+        user.name = data.get('name')
+        user.email = data.get('email')
+        user.password = data.get('password')
+        registerUser(user)
+        setUser(user)
     };
     return(
         <div className="">
@@ -67,6 +85,21 @@ const RegisterPage = () => {
             Register
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              inputProps={{
+                style: { background: 'white' },
+              }}
+              margin="normal"
+              required
+              fullWidth
+              variant="filled"
+              id="name"
+              label="User name"
+              name="name"
+              autoComplete="name"
+              autoFocus
+              
+            />
             <TextField
               inputProps={{
                 style: { background: 'white' },
