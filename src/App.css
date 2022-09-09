@@ -24,6 +24,11 @@
   color: white;
 }
 
+.App-background{
+  color: white;
+  background-color: rgb(37, 36, 36);
+}
+
 .container{
   align-items: center;
   font-family: Arial, Helvetica, sans-serif;

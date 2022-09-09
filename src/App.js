@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Route, Routes,useParams} from 'react-router-do
 import Movies from './components/Movies'
 import React from "react";
 import MoviePage from './components/MoviePage'
-
+import LoginPage from './components/LoginPage'
+import RegisterPage from './components/RegisterPage'
 
 
 const App = () => {
@@ -67,6 +68,22 @@ const App = () => {
             }
             
             // children={<Child />}
+          />
+          <Route
+            path='/login'
+            element={
+              <>
+              <LoginPage/>
+              </>
+            }
+          />
+          <Route
+            path='/register'
+            element={
+              <>
+              <RegisterPage/>
+              </>
+            }
           />
         </Routes>
         
