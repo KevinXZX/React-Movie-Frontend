@@ -55,6 +55,13 @@
   top: 20%;
 }
 
+.login{
+  right: 0%;
+  position: absolute;
+  /* border: 1px solid blue; */
+  top: 20%;
+}
+
 .movie{
   position: relative;
 }

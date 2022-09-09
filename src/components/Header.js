@@ -5,6 +5,7 @@ import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import TextField from '@mui/material/TextField';
+import LoginButton from './LoginButton';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from "react-router-dom";
@@ -119,10 +120,9 @@ const Header = () => {
               /> 
               
               }
-          </Search>
-                    
-          </div>
-          
+          </Search>      
+          </div>     
+          <div className='login'><LoginButton isLoggedIn={true}></LoginButton></div>     
         </Toolbar>
         
       </AppBar>
