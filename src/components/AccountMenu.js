@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
@@ -27,13 +28,21 @@ const AccountMenu = ({user}) => {
     };
     const logOut = (event) => {
         setOpen(false);
-        var cookies = document.cookie.split(";");
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i];
-            var eqPos = cookie.indexOf("=");
-            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        var cookies = document.cookie.split("; ");
+        for (var c = 0; c < cookies.length; c++) {
+            var d = window.location.hostname.split(".");
+            while (d.length > 0) {
+                var cookieBase = encodeURIComponent(cookies[c].split(";")[0].split("=")[0]) + '=; expires=Thu, 01-Jan-1970 00:00:01 GMT; domain=' + d.join('.') + ' ;path=';
+                var p = location.pathname.split('/');
+                document.cookie = cookieBase + '/';
+                while (p.length > 0) {
+                    document.cookie = cookieBase + p.join('/');
+                    p.pop();
+                };
+                d.shift();
+            }
         }
+        console.log("Delete cookies")
         navigate("/")   
     };
     const moveToMovieList = (event) => {
