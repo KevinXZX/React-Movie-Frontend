@@ -2,50 +2,65 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import { useState, useEffect} from 'react'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-const CssTextField = styled(TextField, {
-    shouldForwardProp: (props) => props !== "focusColor"
-  })((p) => ({
-    // input label when focused
-    "& label.Mui-focused": {
-      color: p.focusColor
-    },
-    // focused color for input with variant='standard'
-    "& .MuiInput-underline:after": {
-      borderBottomColor: p.focusColor
-    },
-    // focused color for input with variant='filled'
-    "& .MuiFilledInput-underline:after": {
-      borderBottomColor: p.focusColor
-    },
-    // focused color for input with variant='outlined'
-    "& .MuiOutlinedInput-root": {
-      "&.Mui-focused fieldset": {
-        borderColor: p.focusColor
-      }
-    }
-}));
 const LoginPage = () => {
     const navigate = useNavigate();
+    const [data,setData] = useState(null)
+    const [userCurrent,setUser] = useState([])
     const moveToSignUp = () =>{
         navigate("/register")
     }
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-        });
+        var user = {};
+        user.name = data.get('name')
+        user.email = data.get('email')
+        user.password = data.get('password')
+        loginUser(user)
+        setUser(user)
     };
+    const loginUser = async (user) => {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+      };
+      fetch('https://flickerx.herokuapp.com/api/v1/user/login',requestOptions)
+      .then(response => {
+        var reply = response.json()
+        return reply
+      })
+      .then(data => {
+        setData(data);
+        return data;
+    })
+  }
+  useEffect(() => {
+    if(data!==null){
+      var reply = data
+      alert(JSON.stringify(reply))
+      if("access_token" in reply){
+        document.cookie = "username="+reply.username
+        document.cookie = "id="+reply.user_id
+        document.cookie = "email="+userCurrent.email
+        document.cookie = "access_token="+reply.access_token
+        setData(null)
+        navigate("/")
+      }else{  
+        alert("Error: "+reply.response)
+        setData(null)
+      }
+    }
+  }, [data]);
     return(
         <div className="">
         <Container className="container" component="main" maxWidth="xs">
