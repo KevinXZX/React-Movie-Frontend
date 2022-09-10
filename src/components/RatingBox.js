@@ -4,7 +4,6 @@ import Stack from '@mui/material/Stack';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react'
-
 import Button from '@mui/material/Button';
 import Select from '@mui/material/Select';
 function getCookie(cname) {
@@ -58,12 +57,9 @@ const RatingBox = ({user,id,movie_name}) => {
           return reply
         })
         .then(data => {
-            console.log(JSON.stringify(data))
             var result = data.filter(function (el){
-            console.log(el.movieId+" = "+movie_name)
             return el.movieId === movie_name
           })
-          console.log(JSON.stringify(result))
           if(result.length !== 0){
             var ratingEntry = result[0];
             setDisabled(false);
@@ -111,7 +107,6 @@ const RatingBox = ({user,id,movie_name}) => {
     };
 
     const toggleInput = (event) => {
-        console.log(JSON.stringify(user))
         if(user.user == null){
             navigate("/login")
             return;

@@ -1,6 +1,7 @@
 import MoviePage from './MoviePage'
 import LoginPage from './LoginPage'
 import RegisterPage from './RegisterPage'
+import MovieListPage from './MovieListPage.js'
 import Movies from './Movies'
 import Header from './Header'
 import { Route, Routes,useParams} from 'react-router-dom'
@@ -45,6 +46,7 @@ const RouterHolder = () => {
         navigate("/")
     }
   },[pathname])
+  
   const fetchPopular = async () => {
     fetch('https://api.themoviedb.org/3/movie/popular?api_key=0cec67fe43f9191296e8cb82c2303e20&language=en-US')
       .then(response => {
@@ -141,6 +143,14 @@ const RouterHolder = () => {
             element={
               <>
               <RegisterPage/>
+              </>
+            }
+          />
+          <Route
+            path='/list'
+            element={
+              <>
+              <MovieListPage user={loggedInUser}/>
               </>
             }
           />

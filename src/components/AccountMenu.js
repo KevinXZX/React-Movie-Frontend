@@ -36,6 +36,11 @@ const AccountMenu = ({user}) => {
         }
         navigate("/")   
     };
+    const moveToMovieList = (event) => {
+        setOpen(false);
+        
+        navigate("/list")   
+    };
 
     function handleListKeyDown(event) {
         if (event.key === 'Tab') {
@@ -58,7 +63,7 @@ const AccountMenu = ({user}) => {
     return (
         <div>
         <Button
-          size="large" sx={{color: 'white'}}
+          size="medium" sx={{color: 'white'}}
           ref={anchorRef}
           id="composition-button"
           aria-controls={open ? 'composition-menu' : undefined}
@@ -93,7 +98,7 @@ const AccountMenu = ({user}) => {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleClose}>My List</MenuItem>
+                    <MenuItem onClick={moveToMovieList}>My List</MenuItem>
                     <MenuItem onClick={logOut}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>

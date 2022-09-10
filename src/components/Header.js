@@ -59,7 +59,6 @@ const Header = (user) => {
     const [searchResult, setResult] = useState([]) 
     const fetchSearch = async (e,value) => {
         e.preventDefault()
-        console.log(3)
         fetch('https://api.themoviedb.org/3/search/movie?api_key=0cec67fe43f9191296e8cb82c2303e20&language=en-US&page=1&include_adult=false&query='+e.target.value)
         .then(response => {
         return response.json()
@@ -82,7 +81,7 @@ const Header = (user) => {
     return (
         <AppBar position="relative"  style={{display: 'flex',background: 'black',width:'100%', height:'6vh'}}>
         <Toolbar variant="dense" color="black">
-          <Typography variant="h6" sx="" color="inherit" component="div" onClick={()=>moveHome()}>
+          <Typography variant="h6" color="inherit" component="div" onClick={()=>moveHome()}>
             FlixTracker
           </Typography>
           <div className = "search">
@@ -99,7 +98,7 @@ const Header = (user) => {
               /> */
               <StyledAutocomplete id = "searchField"
                   // placeholder="Search…"
-                  inputProps={{ 'aria-label': 'search', startAdornment: ( <InputAdornment position="start"> <SearchIcon /> 
+                  InputProps={{ 'aria-label': 'search', startAdornment: ( <InputAdornment position="start"> <SearchIcon /> 
                   </InputAdornment> )}}
                   size='small'
                   options={searchResult}
