@@ -3,10 +3,8 @@ import Stack from '@mui/material/Stack';
 import { useState, useEffect } from 'react'
 import Container from '@mui/material/Container';
 import { useParams} from "react-router-dom";
-import { useLocation } from 'react-router';
 import RatingBox from "./RatingBox";
 const MoviePage = (user) => {
-  let pathname = useLocation()
   const {id} = useParams()
   const [movieDetails, setDetails] = useState([])
   // const [collectionLoaded,setCollectionLoaded] = useState(false)

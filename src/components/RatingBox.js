@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Stack from '@mui/material/Stack';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
-import { useState, useEffect } from 'react'
+import {  useEffect } from 'react'
 import Button from '@mui/material/Button';
 import Select from '@mui/material/Select';
+/* eslint-disable */
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -21,6 +22,8 @@ function getCookie(cname) {
     }
     return "";
 }
+/* eslint-enable */
+
 const RatingBox = ({user,id,movie_name}) => {
     const [rating, setRating] = React.useState(-1);
     const [disabledSelect, setDisabled] = React.useState(true);
@@ -124,6 +127,8 @@ const RatingBox = ({user,id,movie_name}) => {
         }
         
     };
+    /* eslint-disable */
+
     useEffect(() => {
         if(user.user === null){
             setRating(-1)
@@ -137,6 +142,8 @@ const RatingBox = ({user,id,movie_name}) => {
         setColor('primary')
         getRating(user.user.id)
     },[id,user,movie_name])
+    /* eslint-enable */
+
     return (
         <Box
         sx={{

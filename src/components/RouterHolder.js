@@ -8,6 +8,8 @@ import { Route, Routes,useParams} from 'react-router-dom'
 import { useNavigate, useLocation } from 'react-router';
 import React from "react";
 import { useState, useEffect} from 'react'
+/* eslint-disable */
+
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -23,6 +25,8 @@ function getCookie(cname) {
     }
     return "";
 }
+/* eslint-enable */
+
 const RouterHolder = () => {
   const [topMovies, setTopMovie] = useState([])
   const [upcomingMovies, setUpcoming] = useState([])
@@ -34,6 +38,8 @@ const RouterHolder = () => {
     fetchPopular()
     fetchUpcoming()
   }, [])
+  /* eslint-disable */
+
   useEffect(() => {
     let username = getCookie("username");
     if(username!=""){
@@ -46,6 +52,8 @@ const RouterHolder = () => {
         navigate("/")
     }
   },[pathname])
+  /* eslint-enable */
+
   
   const fetchPopular = async () => {
     fetch('https://api.themoviedb.org/3/movie/popular?api_key=0cec67fe43f9191296e8cb82c2303e20&language=en-US')
@@ -77,7 +85,7 @@ const RouterHolder = () => {
       return reply
     })
     .then(data => {
-      if(data.response != "authenticated"){
+      if(data.response !== "authenticated"){
         setLoggedInUser(null)
         var cookies = document.cookie.split(";");
         //Clear all cookies
