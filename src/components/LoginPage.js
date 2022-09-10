@@ -47,7 +47,6 @@ const LoginPage = () => {
   useEffect(() => {
     if(data!==null){
       var reply = data
-      alert(JSON.stringify(reply))
       if("access_token" in reply){
         document.cookie = "username="+reply.username
         document.cookie = "id="+reply.user_id

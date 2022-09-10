@@ -40,7 +40,6 @@ const RegisterPage = () => {
   useEffect(() => {
     if(data!==null){
       var reply = data
-      alert(JSON.stringify(reply))
       if(reply.response === "User created"){
         document.cookie = "username="+userCurrent.name
         document.cookie = "id="+reply.user_id
