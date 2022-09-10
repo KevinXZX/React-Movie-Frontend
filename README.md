@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). This is a React Single Page App (SPA) that pulls movie data from the TMDB REST api and displays it. It uses components from the [Material-Ui](https://github.com/mui/material-ui) component library.
 
-The app is deployed on https://flixtracker.netlify.app/.
+The app is deployed on https://flixtracker.netlify.app/. The app is supported by my [backend REST API](https://github.com/KevinXZX/React-Movie-Backend) to facilate user authentication and CRUD functionality on movie ratings.
 
 The `master` branch contains the live code deployed while the `dev_branch` contains any code in development and is not guaranteed to work. 
 
