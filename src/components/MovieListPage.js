@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+/* eslint-disable */
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -25,6 +26,7 @@ function getCookie(cname) {
     }
     return "";
 }
+/* eslint-enable */
 const MovieListPage = ({user}) => {
     const navigate = useNavigate();
     const [list,setList] = useState([])
@@ -71,6 +73,7 @@ const MovieListPage = ({user}) => {
             return data;
       })
     }
+    /* eslint-disable */
     useEffect(() => {
         if(user === null){
             navigate("/")
@@ -79,6 +82,8 @@ const MovieListPage = ({user}) => {
         
         getRating(user.id)
     },[pathname])
+    /* eslint-enable */
+
     return (
         <>
         <TableContainer sx={{
@@ -106,7 +111,7 @@ const MovieListPage = ({user}) => {
                         {row.movieId}
                     </TableCell>
                     <TableCell align="left" sx={{color:"white",border:'1px solid white'}}>
-                        {row.rating==-1 ? (
+                        {row.rating===-1 ? (
                             "-"
                         ) : (
                             row.rating
