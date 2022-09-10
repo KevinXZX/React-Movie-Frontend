@@ -55,7 +55,7 @@ const StyledAutocomplete = styled(Autocomplete)({
   }
 });
 
-const Header = () => {
+const Header = (user) => {
     
     const [searchResult, setResult] = useState([]) 
     const fetchSearch = async (e,value) => {
@@ -122,20 +122,13 @@ const Header = () => {
               }
           </Search>      
           </div>     
-          <div className='login'><LoginButton isLoggedIn={true}></LoginButton></div>     
+          <div className='login'><LoginButton user={user}></LoginButton></div>     
         </Toolbar>
         
       </AppBar>
     )
   }
   
-  Header.defaultProps = {
-    title: 'Task Tracker',
-  }
-  
-  Header.propTypes = {
-    title: PropTypes.string.isRequired,
-  }
   
   // CSS in JS
   // const headingStyle = {

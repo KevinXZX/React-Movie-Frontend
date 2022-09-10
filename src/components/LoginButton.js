@@ -1,19 +1,19 @@
 import Button from '@mui/material/Button';
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import AccountMenu from './AccountMenu';
 
-const LoginButton = ({isLoggedIn}) => {
+const LoginButton = ({user}) => {
     const navigate = useNavigate();
     const moveToLoginPage = () =>{
-        console.log("testing")
         navigate("/login")
-      }
-    if(isLoggedIn){
+    }
+    if(user.user == null){
         return (
             <Button size="large" sx={{color: 'white'}} onClick={moveToLoginPage}>Login/Register</Button>
         )
     }
-    return(<div>hello</div>)
+    return(<AccountMenu user={user}/>)
   }
   
   export default LoginButton
