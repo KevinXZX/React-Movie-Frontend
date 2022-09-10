@@ -130,10 +130,11 @@ const RatingBox = ({user,id,movie_name}) => {
         
     };
     useEffect(() => {
-        if(user.user == null){
+        if(user.user === null){
             setRating(-1)
             setText('Add')
             setColor('primary')
+            return;
         }
         //Retrieve rating from REST
         setRating(-1)
