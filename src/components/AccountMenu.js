@@ -6,11 +6,13 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
-import Stack from '@mui/material/Stack';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { useNavigate } from 'react-router';
 
 const AccountMenu = ({user}) => {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
+    const navigate = useNavigate();
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -22,6 +24,17 @@ const AccountMenu = ({user}) => {
         }
 
         setOpen(false);
+    };
+    const logOut = (event) => {
+        setOpen(false);
+        var cookies = document.cookie.split(";");
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i];
+            var eqPos = cookie.indexOf("=");
+            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        }
+        navigate("/")   
     };
 
     function handleListKeyDown(event) {
@@ -54,6 +67,7 @@ const AccountMenu = ({user}) => {
           onClick={handleToggle}
         >
           {user.user.username}
+          <KeyboardArrowDownIcon></KeyboardArrowDownIcon>
         </Button>
         <Popper
           open={open}
@@ -80,7 +94,7 @@ const AccountMenu = ({user}) => {
                     onKeyDown={handleListKeyDown}
                   >
                     <MenuItem onClick={handleClose}>My List</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem onClick={logOut}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

@@ -10,11 +10,9 @@ import { useState, useEffect} from 'react'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import WarningModal from "./WarningModal";
 
 const RegisterPage = () => {
     const navigate = useNavigate();
-    const [loginDetails, setLogin] = useState([])
     const [data,setData] = useState(null)
     const [userCurrent,setUser] = useState([])
     // const [access_token,setAccess] = useState([])
@@ -45,7 +43,6 @@ const RegisterPage = () => {
         document.cookie = "id="+reply.user_id
         document.cookie = "email="+userCurrent.email
         document.cookie = "access_token="+reply.access_token
-        setLogin(true)
         setData(null)
         navigate("/")
       }else{  
@@ -53,6 +50,7 @@ const RegisterPage = () => {
         setData(null)
       }
     }
+    // eslint-disable-next-line
   }, [data]);
   
     const handleSubmit = async (event) => {

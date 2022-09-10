@@ -59,6 +59,7 @@ const LoginPage = () => {
         setData(null)
       }
     }
+    // eslint-disable-next-line
   }, [data]);
     return(
         <div className="">
