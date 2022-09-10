@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react'
 import Container from '@mui/material/Container';
 import { useParams} from "react-router-dom";
 import { useLocation } from 'react-router';
-const MoviePage = () => {
+import RatingBox from "./RatingBox";
+const MoviePage = (user) => {
   let pathname = useLocation()
   const {id} = useParams()
   const [movieDetails, setDetails] = useState([])
@@ -32,7 +33,7 @@ const MoviePage = () => {
     
       // return () => clearInterval(interval);
       // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[pathname])
+  },[id])
 
     
     
@@ -92,6 +93,7 @@ const MoviePage = () => {
         </Stack>
         
         <Stack spacing={0} style={{marginLeft:'5%'}}>
+          <RatingBox user={user} movie_name={movieDetails.original_title}></RatingBox>
           <h4 style={{marginBottom:'3px'}}>
           Synposis
           </h4>

@@ -122,7 +122,7 @@ const RouterHolder = () => {
             path='/movies/:id'
             element={
               <>
-              <MoviePage ida={{id}}/>
+              <MoviePage ida={{id}} user={loggedInUser}/>
               </>
             }
             
