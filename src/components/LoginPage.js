@@ -48,10 +48,11 @@ const LoginPage = () => {
     if(data!==null){
       var reply = data
       if("access_token" in reply){
-        document.cookie = "username="+reply.username
-        document.cookie = "id="+reply.user_id
-        document.cookie = "email="+userCurrent.email
-        document.cookie = "access_token="+reply.access_token
+        document.cookie = "username="+reply.username+";domain=.flixtracker.live;path=/"
+        document.cookie = "id="+reply.user_id+";domain=.flixtracker.live;path=/"
+        document.cookie = "email="+userCurrent.email+";domain=.flixtracker.live;path=/"
+        document.cookie = "access_token="+reply.access_token+";domain=.flixtracker.live;path=/"
+        console.log(document.cookie)
         setData(null)
         navigate("/")
       }else{  
