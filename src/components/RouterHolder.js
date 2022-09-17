@@ -51,6 +51,7 @@ const RouterHolder = () => {
         setLoggedInUser(null)
         navigate("/")
     }
+    console.log(pathname.pathname);
   },[pathname])
   /* eslint-enable */
 

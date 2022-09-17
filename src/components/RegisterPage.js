@@ -39,10 +39,10 @@ const RegisterPage = () => {
     if(data!==null){
       var reply = data
       if(reply.response === "User created"){
-        document.cookie = "username="+userCurrent.name+";domain=.flixtracker.live;path=/"
-        document.cookie = "id="+reply.user_id+";domain=.flixtracker.live;path=/"
-        document.cookie = "email="+userCurrent.email+";domain=.flixtracker.live;path=/"
-        document.cookie = "access_token="+reply.access_token+";domain=.flixtracker.live;path=/"
+        document.cookie = "username="+userCurrent.name+";domain=.flixtracker.live;path=/;SameSite=Lax"
+        document.cookie = "id="+reply.user_id+";domain=.flixtracker.live;path=/;SameSite=Lax"
+        document.cookie = "email="+userCurrent.email+";domain=.flixtracker.live;path=/;SameSite=Lax"
+        document.cookie = "access_token="+reply.access_token+";domain=.flixtracker.live;path=/;SameSite=Lax"
         setData(null)
         navigate("/")
       }else{  
