@@ -44,6 +44,7 @@ const RegisterPage = () => {
         document.cookie = "email="+userCurrent.email+";domain=.flixtracker.live;path=/;SameSite=Lax"
         document.cookie = "access_token="+reply.access_token+";domain=.flixtracker.live;path=/;SameSite=Lax"
         setData(null)
+        console.log("Register Home")
         navigate("/")
       }else{  
         alert("Error: "+reply.response)

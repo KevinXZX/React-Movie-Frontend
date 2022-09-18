@@ -54,6 +54,7 @@ const LoginPage = () => {
         document.cookie = "access_token="+reply.access_token+";domain=.flixtracker.live;path=/;SameSite=Lax"
         console.log(document.cookie)
         setData(null)
+        console.log("Login Home")
         navigate("/")
       }else{  
         alert("Error: "+reply.response)

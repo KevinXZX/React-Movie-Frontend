@@ -73,6 +73,7 @@ const Header = (user) => {
     } //still gotta use autocomplete spend some time figuring it out
     const navigate = useNavigate();
     const moveHome = () =>{
+      console.log("Header Move Home")
       navigate("/")
     }
     const moveToMovie = (id) =>{

@@ -49,6 +49,7 @@ const RouterHolder = () => {
         verifyToken(user)
     }else if(loggedInUser!==null){
         setLoggedInUser(null)
+        console.log("RouterHolder LoggedInUser == null")
         navigate("/")
     }
     console.log(pathname.pathname);
@@ -96,6 +97,7 @@ const RouterHolder = () => {
             var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
             document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
         }
+        console.log("RouterHolder Response is not authenticated Home")
         navigate("/")   
       }
       let userCurrent = {}
