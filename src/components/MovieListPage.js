@@ -76,10 +76,8 @@ const MovieListPage = ({user}) => {
     /* eslint-disable */
     useEffect(() => {
         if(user === null){
-            navigate("/")
             return;
         }
-        
         getRating(user.id)
     },[pathname])
     /* eslint-enable */
