@@ -90,6 +90,7 @@ const RouterHolder = () => {
       if(data.response !== "authenticated"){
         setLoggedInUser(null)
         var cookies = document.cookie.split("; ");
+        /* eslint-disable */
         for (var c = 0; c < cookies.length; c++) {
             var d = window.location.hostname.split(".");
             while (d.length > 0) {
@@ -103,6 +104,7 @@ const RouterHolder = () => {
                 d.shift();
             }
         }
+        /* eslint-enable */
         console.log("RouterHolder Response is not authenticated Home")
         navigate("/")   
       }
